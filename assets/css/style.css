@@ -1,0 +1,293 @@
+/* Variables CSS */
+:root {
+    --gold: #D4AF37;
+    --gold-light: #E5C76B;
+    --gold-dark: #B69121;
+    --dark: #212529;
+    --light: #F8F9FA;
+    --transition: all 0.3s ease;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Couleurs personnalisées */
+.text-gold {
+    color: var(--gold) !important;
+}
+
+.bg-gold {
+    background-color: var(--gold) !important;
+}
+
+/* Boutons personnalisés */
+.btn-gold {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: white;
+    transition: var(--transition);
+}
+
+.btn-gold:hover {
+    background-color: var(--gold-dark);
+    border-color: var(--gold-dark);
+    color: white;
+}
+
+.btn-outline-gold {
+    border-color: var(--gold);
+    color: var(--gold);
+    transition: var(--transition);
+}
+
+.btn-outline-gold:hover {
+    background-color: var(--gold);
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    margin: 0 5px;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--gold) !important;
+}
+
+/* Hero section */
+.hero {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Formulaire de recherche */
+.search-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
+.hotel-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.hotel-card .card-title {
+    font-family: 'Playfair Display', serif;
+}
+
+.hotel-card .stars {
+    color: var(--gold);
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .search-form {
+        margin-top: -50px;
+    }
+}
+
+/* Dashboard */
+.sidebar {
+    background-color: var(--dark);
+    min-height: calc(100vh - 76px);
+}
+
+.sidebar .nav-link {
+    color: white;
+    padding: 15px 20px;
+    border-left: 3px solid transparent;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--gold);
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+    color: var(--gold);
+}
+
+/* Admin tables */
+.table-admin th {
+    background-color: var(--dark);
+    color: white;
+}
+
+/* Formulaires */
+.form-control:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+}
+
+/* Badges */
+.badge-gold {
+    background-color: var(--gold);
+    color: white;
+}
+
+/* Pagination */
+.page-link {
+    color: var(--gold);
+}
+
+.page-item.active .page-link {
+    background-color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* Footer */
+footer a:hover {
+    color: var(--gold) !important;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--gold);
+}
+
+/* Styles pour les pages de connexion et d'inscription */
+.login-page,
+.register-page {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 76px - 400px);
+    display: flex;
+    align-items: center;
+}
+
+.login-image,
+.register-image {
+    position: relative;
+}
+
+.login-image::before,
+.register-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.7) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.form-floating > label {
+    padding-left: 1.75rem;
+}
+
+.form-floating > .form-control {
+    padding-left: 2.5rem;
+}
+
+.form-floating .form-control:focus ~ label,
+.form-floating .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-check-input:checked {
+    background-color: var(--gold);
+    border-color: var(--gold);
+}
+
+/* Animation pour les formulaires */
+.login-form-container,
+.register-form-container {
+    animation: fadeInRight 0.5s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
