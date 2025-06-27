@@ -139,7 +139,7 @@ include '../includes/header.php';
                             $revenus = fetchOne("SELECT SUM(prix_total) as total FROM reservations WHERE MONTH(date_reservation) = MONTH(CURRENT_DATE()) AND YEAR(date_reservation) = YEAR(CURRENT_DATE()) AND statut = 'confirmée'");
                             $montant = $revenus['total'] ?: 0;
                             ?>
-                            <p class="display-6 mb-0"><?php echo number_format($montant, 2, ',', ' '); ?> €</p>
+                            <p class="display-6 mb-0"><?php echo number_format($montant, 2, ',', ' '); ?> MAD</p>
                             <a href="rapports.php" class="btn btn-sm btn-outline-secondary mt-3">Voir les rapports</a>
                         </div>
                     </div>
@@ -196,7 +196,7 @@ include '../includes/header.php';
                                                     <span class="badge bg-danger">Annulée</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <a href="reservation_details.php?id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-secondary">Détails</a>
                                                 <div class="btn-group ms-1">

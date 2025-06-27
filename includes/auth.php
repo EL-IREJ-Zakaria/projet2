@@ -118,4 +118,62 @@ function requireAdmin() {
         exit;
     }
 }
+
+// Fonction pour nettoyer les tokens expirés
+function cleanExpiredTokens() {
+    try {
+        executeQuery("DELETE FROM password_resets WHERE expires_at < NOW()");
+        return true;
+    } catch (Exception $e) {
+        error_log("Erreur nettoyage tokens: " . $e->getMessage());
+        return false;
+    }
+}
+
+// Fonction pour vérifier la force d'un mot de passe
+function validatePasswordStrength($password) {
+    $errors = [];
+    
+    if (strlen($password) < 8) {
+        $errors[] = "Le mot de passe doit contenir au moins 8 caractères";
+    }
+    
+    if (!preg_match('/[a-z]/', $password)) {
+        $errors[] = "Le mot de passe doit contenir au moins une lettre minuscule";
+    }
+    
+    if (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = "Le mot de passe doit contenir au moins une lettre majuscule";
+    }
+    
+    if (!preg_match('/\d/', $password)) {
+        $errors[] = "Le mot de passe doit contenir au moins un chiffre";
+    }
+    
+    return [
+        'valid' => empty($errors),
+        'errors' => $errors
+    ];
+}
+
+// Fonction pour limiter les tentatives de réinitialisation
+function checkResetAttempts($email) {
+    $count = fetchOne(
+        "SELECT COUNT(*) as count FROM password_resets WHERE email = ? AND created_at > DATE_SUB(NOW(), INTERVAL 1 HOUR)",
+        "s",
+        [$email]
+    );
+    
+    return $count['count'] < 3; // Maximum 3 tentatives par heure
+}
+
+// Fonction pour envoyer un email de réinitialisation (à implémenter avec PHPMailer)
+function sendPasswordResetEmail($email, $token, $userName) {
+    // En production, utilisez PHPMailer ou un service d'email
+    // Pour la démo, on retourne juste le lien
+    $reset_link = "http://" . $_SERVER['HTTP_HOST'] . "/projet2/mot_de_passe_oublie.php?step=reset&token=" . $token;
+    
+    // Simuler l'envoi d'email
+    return true;
+}
 ?>

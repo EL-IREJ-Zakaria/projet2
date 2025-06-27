@@ -7,7 +7,7 @@ require_once 'auth.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+    
 // Générer un token CSRF pour les formulaires
 $csrf_token = generateCSRFToken();
 ?>
@@ -42,13 +42,13 @@ $csrf_token = generateCSRFToken();
                         <a class="nav-link" href="/projet2/index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nos Hôtels</a>
+                        <a class="nav-link" href="/projet2/hotels.php">Nos Hôtels</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="/projet2/services.php">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="/projet2/contact.php">Contact</a>
                     </li>
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="nav-item dropdown">

@@ -94,7 +94,7 @@ include '../includes/header.php';
                                                 <?php endfor; ?>
                                             </td>
                                             <td><?php echo $hotel['nb_chambres']; ?></td>
-                                            <td><?php echo number_format($hotel['prix_moyen'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($hotel['prix_moyen'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="../../hotel.php?id=<?php echo $hotel['id']; ?>" class="btn btn-sm btn-outline-secondary" target="_blank">

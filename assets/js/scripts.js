@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     if (diffJours > 0) {
                         const prixTotal = diffJours * parseFloat(prixParNuit.value);
-                        prixTotalElement.textContent = prixTotal.toFixed(2) + ' €';
+                        prixTotalElement.textContent = prixTotal.toFixed(2) + ' MAD';
                         
                         // Mettre à jour le champ caché pour le formulaire
                         const prixTotalInput = document.getElementById('prix_total_input');
@@ -157,3 +157,115 @@ const passwordConfirmValidation = function() {
 };
 
 passwordConfirmValidation();
+
+// Slider de budget dynamique
+class BudgetSlider {
+    constructor(containerId, minValue, maxValue, currentMin, currentMax) {
+        this.container = document.getElementById(containerId);
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.currentMin = currentMin;
+        this.currentMax = currentMax;
+        this.init();
+    }
+    
+    init() {
+        if (!this.container) return;
+        
+        // Créer la structure HTML du slider
+        this.container.innerHTML = `
+            <div class="budget-slider">
+                <div class="slider-track"></div>
+                <div class="slider-handle" data-handle="min"></div>
+                <div class="slider-handle" data-handle="max"></div>
+            </div>
+        `;
+        
+        this.slider = this.container.querySelector('.budget-slider');
+        this.track = this.container.querySelector('.slider-track');
+        this.minHandle = this.container.querySelector('[data-handle="min"]');
+        this.maxHandle = this.container.querySelector('[data-handle="max"]');
+        
+        this.updateSlider();
+        this.bindEvents();
+    }
+    
+    updateSlider() {
+        const minPercent = ((this.currentMin - this.minValue) / (this.maxValue - this.minValue)) * 100;
+        const maxPercent = ((this.currentMax - this.minValue) / (this.maxValue - this.minValue)) * 100;
+        
+        this.minHandle.style.left = minPercent + '%';
+        this.maxHandle.style.left = maxPercent + '%';
+        
+        this.track.style.left = minPercent + '%';
+        this.track.style.width = (maxPercent - minPercent) + '%';
+        
+        // Mettre à jour l'affichage
+        document.getElementById('budget-min-display').textContent = this.currentMin;
+        document.getElementById('budget-max-display').textContent = this.currentMax;
+        document.getElementById('budget_min').value = this.currentMin;
+        document.getElementById('budget_max').value = this.currentMax;
+    }
+    
+    bindEvents() {
+        let isDragging = false;
+        let activeHandle = null;
+        
+        const startDrag = (e, handle) => {
+            isDragging = true;
+            activeHandle = handle;
+            handle.classList.add('active');
+            e.preventDefault();
+        };
+        
+        const drag = (e) => {
+            if (!isDragging || !activeHandle) return;
+            
+            const rect = this.slider.getBoundingClientRect();
+            const percent = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+            const value = Math.round(this.minValue + (percent / 100) * (this.maxValue - this.minValue));
+            
+            if (activeHandle.dataset.handle === 'min') {
+                this.currentMin = Math.min(value, this.currentMax - 50);
+            } else {
+                this.currentMax = Math.max(value, this.currentMin + 50);
+            }
+            
+            this.updateSlider();
+        };
+        
+        const stopDrag = () => {
+            if (activeHandle) {
+                activeHandle.classList.remove('active');
+            }
+            isDragging = false;
+            activeHandle = null;
+        };
+        
+        this.minHandle.addEventListener('mousedown', (e) => startDrag(e, this.minHandle));
+        this.maxHandle.addEventListener('mousedown', (e) => startDrag(e, this.maxHandle));
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+        
+        // Support tactile
+        this.minHandle.addEventListener('touchstart', (e) => startDrag(e.touches[0], this.minHandle));
+        this.maxHandle.addEventListener('touchstart', (e) => startDrag(e.touches[0], this.maxHandle));
+        
+        document.addEventListener('touchmove', (e) => drag(e.touches[0]));
+        document.addEventListener('touchend', stopDrag);
+    }
+}
+
+// Initialiser le slider de budget au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer les valeurs depuis PHP (vous devrez les passer depuis le serveur)
+    const minGlobal = parseInt(document.querySelector('[data-prix-min]')?.dataset.prixMin || '0');
+    const maxGlobal = parseInt(document.querySelector('[data-prix-max]')?.dataset.prixMax || '1000');
+    const currentMin = parseInt(document.getElementById('budget_min')?.value || minGlobal);
+    const currentMax = parseInt(document.getElementById('budget_max')?.value || maxGlobal);
+    
+    if (document.getElementById('budget-slider')) {
+        new BudgetSlider('budget-slider', minGlobal, maxGlobal, currentMin, currentMax);
+    }
+});

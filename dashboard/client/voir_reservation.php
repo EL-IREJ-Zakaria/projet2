@@ -151,7 +151,7 @@ include '../includes/header.php';
                                 </div>
                                 <div class="col-md-6">
                                     <p class="mb-1 text-muted">Montant total</p>
-                                    <p class="fw-bold text-gold"><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> €</p>
+                                    <p class="fw-bold text-gold"><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> MAD</p>
                                 </div>
                             </div>
                             
@@ -209,7 +209,7 @@ include '../includes/header.php';
                                     <p class="fw-bold mb-1"><?php echo htmlspecialchars($reservation['chambre_type']); ?></p>
                                     <p class="mb-1">Chambre n°<?php echo htmlspecialchars($reservation['chambre_numero']); ?></p>
                                     <p class="mb-1">Capacité: <?php echo $reservation['chambre_capacite']; ?> personnes</p>
-                                    <p>Prix par nuit: <?php echo number_format($reservation['prix_nuit'], 2, ',', ' '); ?> €</p>
+                                    <p>Prix par nuit: <?php echo number_format($reservation['prix_nuit'], 2, ',', ' '); ?> MAD</p>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@ include '../includes/header.php';
                                 <tbody>
                                     <tr>
                                         <td>Prix par nuit</td>
-                                        <td class="text-end"><?php echo number_format($prix_nuit, 2, ',', ' '); ?> €</td>
+                                        <td class="text-end"><?php echo number_format($prix_nuit, 2, ',', ' '); ?> MAD</td>
                                     </tr>
                                     <tr>
                                         <td>Nombre de nuits</td>
@@ -235,15 +235,15 @@ include '../includes/header.php';
                                     </tr>
                                     <tr>
                                         <td>Sous-total</td>
-                                        <td class="text-end"><?php echo number_format($sous_total, 2, ',', ' '); ?> €</td>
+                                        <td class="text-end"><?php echo number_format($sous_total, 2, ',', ' '); ?> MAD</td>
                                     </tr>
                                     <tr>
                                         <td>Taxes (10%)</td>
-                                        <td class="text-end"><?php echo number_format($taxe, 2, ',', ' '); ?> €</td>
+                                        <td class="text-end"><?php echo number_format($taxe, 2, ',', ' '); ?> MAD</td>
                                     </tr>
                                     <tr class="fw-bold">
                                         <td>Total</td>
-                                        <td class="text-end text-gold"><?php echo number_format($total, 2, ',', ' '); ?> €</td>
+                                        <td class="text-end text-gold"><?php echo number_format($total, 2, ',', ' '); ?> MAD</td>
                                     </tr>
                                 </tbody>
                             </table>

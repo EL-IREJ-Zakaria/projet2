@@ -207,7 +207,7 @@ include '../includes/header.php';
                                             <option value="">Sélectionner une chambre</option>
                                             <?php foreach ($chambres as $chambre) : ?>
                                                 <option value="<?php echo $chambre['id']; ?>" <?php echo (isset($_POST['chambre_id']) && $_POST['chambre_id'] == $chambre['id']) ? 'selected' : ''; ?> data-prix="<?php echo $chambre['prix_nuit']; ?>">
-                                                    Chambre <?php echo htmlspecialchars($chambre['numero'] . ' - ' . $chambre['type'] . ' - ' . $chambre['capacite'] . ' pers. - ' . number_format($chambre['prix_nuit'], 2, ',', ' ') . ' €/nuit'); ?>
+                                                    Chambre <?php echo htmlspecialchars($chambre['numero'] . ' - ' . $chambre['type'] . ' - ' . $chambre['capacite'] . ' pers. - ' . number_format($chambre['prix_nuit'], 2, ',', ' ') . ' MAD/nuit'); ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const prixTotal = (prixNuit * diffDays) + (taxeSejour * diffDays);
                 
                 // Afficher le prix total (à implémenter si nécessaire)
-                console.log(`Prix total: ${prixTotal.toFixed(2)} €`);
+                console.log(`Prix total: ${prixTotal.toFixed(2)} MAD`);
             }
         }
     }

@@ -116,7 +116,7 @@ include '../includes/header.php';
                                     <div class="card border-0 bg-light">
                                         <div class="card-body text-center">
                                             <h6 class="text-muted mb-2">Montant total dépensé</h6>
-                                            <h2 class="mb-0"><?php echo number_format($stats['montant_total'] ?? 0, 2, ',', ' '); ?> €</h2>
+                                            <h2 class="mb-0"><?php echo number_format($stats['montant_total'] ?? 0, 2, ',', ' '); ?> MAD</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ include '../includes/header.php';
                                                     ?>
                                                 </div>
                                             </td>
-                                            <td><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <?php if ($reservation['statut'] === 'en_attente') : ?>
                                                     <span class="badge bg-warning">En attente</span>

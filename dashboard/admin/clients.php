@@ -101,9 +101,9 @@ include '../includes/header.php';
                                             <td><?php echo $client['nb_reservations']; ?></td>
                                             <td>
                                                 <?php if ($client['montant_total']) : ?>
-                                                    <?php echo number_format($client['montant_total'], 2, ',', ' '); ?> €
+                                                    <?php echo number_format($client['montant_total'], 2, ',', ' '); ?> MAD
                                                 <?php else : ?>
-                                                    0,00 €
+                                                    0,00 MAD
                                                 <?php endif; ?>
                                             </td>
                                             <td>

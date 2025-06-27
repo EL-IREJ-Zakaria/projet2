@@ -106,7 +106,7 @@ include '../includes/header.php';
                     <div class="card shadow-sm h-100">
                         <div class="card-body">
                             <h5 class="card-title text-muted mb-0">Montant total</h5>
-                            <p class="display-6 mb-0"><?php echo number_format($stats['montant_total'], 2, ',', ' '); ?> €</p>
+                            <p class="display-6 mb-0"><?php echo number_format($stats['montant_total'], 2, ',', ' '); ?> MAD</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ include '../includes/header.php';
                             <h5 class="card-title text-muted mb-0">Prochaine réservation</h5>
                             <?php if ($stats['prochaine_reservation']) : ?>
                                 <p class="mb-0 fw-bold"><?php echo is_array($stats['prochaine_reservation']) && isset($stats['prochaine_reservation']['date_arrivee']) ? date('d/m/Y', strtotime($stats['prochaine_reservation']['date_arrivee'])) : ''; ?></p>
-                                <p class="small text-muted"><?php echo is_array($stats['prochaine_reservation']) && isset($stats['prochaine_reservation']['hotel_nom']) ? htmlspecialchars($stats['prochaine_reservation']['hotel_nom']) : ''; ?></p>
+                                <p class="small text-muted"><?php echo $stats['prochaine_reservation'] && is_array($stats['prochaine_reservation']) && isset($stats['prochaine_reservation']['hotel_nom']) ? htmlspecialchars($stats['prochaine_reservation']['hotel_nom']) : ''; ?></p>
                             <?php else: ?>
                                 <p class="text-muted mb-0">Aucune</p>
                             <?php endif; ?>
@@ -172,7 +172,7 @@ include '../includes/header.php';
                                                     <span class="badge bg-danger">Annulée</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <a href="voir_reservation.php?id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-secondary">Détails</a>
                                                 <?php if ($reservation['statut'] !== 'annulée' && strtotime($reservation['date_arrivee']) > time()) : ?>
@@ -197,27 +197,17 @@ include '../includes/header.php';
                     <div class="row">
                         <div class="col-md-4 mb-3 mb-md-0">
                             <div class="card h-100">
-                                <img src="../../assets/images/hotels/hotel_paris.jpg" class="card-img-top" alt="Hôtel à Paris" onerror="this.src='../../assets/images/hotel_default.jpg'">
+                                <img src="../../assets/images/hotels/hotel_marrakech.jpg" class="card-img-top" alt="Hôtel à Marrakech" onerror="this.src='../../assets/images/hotel_default.jpg'">
                                 <div class="card-body">
                                     <h5 class="card-title">Le Grand Palais</h5>
-                                    <p class="card-text">Paris, France</p>
+                                    <p class="card-text">Marrakech, Maroc</p>
                                     <a href="../../hotel.php?id=1" class="btn btn-sm btn-outline-gold">Voir l'hôtel</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3 mb-md-0">
                             <div class="card h-100">
-                                <img src="../../assets/images/hotels/hotel_nice.jpg" class="card-img-top" alt="Hôtel à Nice" onerror="this.src='../../assets/images/hotel_default.jpg'">
-                                <div class="card-body">
-                                    <h5 class="card-title">Riviera Luxury</h5>
-                                    <p class="card-text">Nice, France</p>
-                                    <a href="../../hotel.php?id=2" class="btn btn-sm btn-outline-gold">Voir l'hôtel</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <img src="../../assets/images/hotels/hotel_cannes.jpg" class="card-img-top" alt="Hôtel à Cannes" onerror="this.src='../../assets/images/hotel_default.jpg'">
+                                <img src="../../assets/images/hotels/hotel_fes.jpg" class="card-img-top" alt="Hôtel à Fès" onerror="this.src='../../assets/images/hotel_default.jpg'">
                                 <div class="card-body">
                                     <h5 class="card-title">Château Royal</h5>
                                     <p class="card-text">Cannes, France</p>

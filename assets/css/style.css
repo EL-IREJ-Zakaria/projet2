@@ -114,13 +114,159 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Cards */
+/* Amélioration des cartes d'hôtels */
 .hotel-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
-    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
+    border-radius: 15px;
 }
+
+.hotel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.hotel-image {
+    transition: transform 0.3s ease;
+    border-radius: 15px 15px 0 0;
+}
+
+.hotel-card:hover .hotel-image {
+    transform: scale(1.05);
+}
+
+/* Overlay pour les étoiles sur l'image */
+.hotel-rating-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.8);
+    color: var(--gold);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Badge de prix */
+.price-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    color: white;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Effet de dégradé sur l'image */
+.hotel-card .position-relative::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.3));
+    pointer-events: none;
+}
+
+/* Animation des boutons */
+.btn-outline-gold {
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-outline-gold:hover {
+    background: var(--gold);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hotel-card {
+        margin-bottom: 20px;
+    }
+    
+    .hotel-image {
+        height: 200px !important;
+    }
+    
+    .price-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+.hotel-card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.hotel-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* Overlay pour les étoiles sur l'image */
+.hotel-rating-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: var(--gold);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.hotel-card .card-body {
+    padding: 1.5rem;
+}
+.hotel-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.hotel-card .card-text {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+.hotel-card .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--dark);
+    color: white;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--gold-light);
+}
+
 
 .hotel-card:hover {
     transform: translateY(-5px);
@@ -290,4 +436,624 @@ footer a:hover {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* Styles pour les images d'hôtels */
+.hotel-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Images de bannière d'hôtel */
+.hotel-banner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hotel-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+    z-index: 1;
+}
+
+.hotel-banner .content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Galerie d'images */
+.hotel-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Styles pour les images de chambres */
+.chambre-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.chambre-image:hover {
+    transform: scale(1.02);
+}
+
+/* Effet de survol sur les cartes de chambres */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Amélioration du bouton réserver */
+.btn-gold {
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hotel-image {
+        height: 200px;
+    }
+    
+    .hotel-banner {
+        height: 300px;
+    }
+    
+    .hotel-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .chambre-image {
+        height: 150px;
+    }
+}
+
+/* Effet de chargement pour les images */
+.image-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Overlay pour les images avec texte */
+.image-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover::after {
+    opacity: 1;
+}
+
+.image-overlay .overlay-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.image-overlay:hover .overlay-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Images de fond globales */
+.hero, .hero-hotel {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before, .hero-hotel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(212,175,55,0.1), rgba(184,134,11,0.1));
+    z-index: 1;
+}
+
+.hero .container, .hero-hotel .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Effets de transparence et blur */
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.card.border-0 {
+    border-radius: 20px !important;
+}
+
+.rounded-4 {
+    border-radius: 20px !important;
+}
+
+/* Animations pour les images de fond */
+@keyframes backgroundSlide {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero {
+    animation: backgroundSlide 20s ease-in-out infinite;
+    background-size: 120% 120%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero, .hero-hotel {
+        min-height: 60vh !important;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* Overlay décoratifs */
+.section-overlay {
+    position: relative;
+}
+
+.section-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(255,255,255,1), transparent);
+    z-index: 1;
+}
+
+/* Slider de budget */
+.budget-slider {
+    height: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    position: relative;
+    margin: 15px 0;
+}
+
+.budget-slider .slider-track {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #f4d03f);
+    border-radius: 3px;
+    position: absolute;
+}
+
+.budget-slider .slider-handle {
+    width: 20px;
+    height: 20px;
+    background: #d4af37;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    top: -7px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+.budget-slider .slider-handle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.budget-slider .slider-handle.active {
+    background: #b8941f;
+}
+/* Styles pour la galerie d'hôtels */
+.hotel-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.hotel-image {
+    transition: transform 0.3s ease;
+}
+
+.hotel-card:hover .hotel-image {
+    transform: scale(1.05);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hotel-card:hover .carousel-control-prev,
+.hotel-card:hover .carousel-control-next {
+    opacity: 0.8;
+}
+
+.carousel-indicators {
+    margin-bottom: 10px;
+}
+
+.carousel-indicators button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 3px;
+}
+
+.badge {
+    font-size: 0.7em;
+}
+
+/* Animation pour les badges */
+.badge {
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Images de bannière d'hôtel */
+.hotel-banner {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hotel-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+    z-index: 1;
+}
+
+.hotel-banner .content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Galerie d'images */
+.hotel-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Styles pour les images de chambres */
+.chambre-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.chambre-image:hover {
+    transform: scale(1.02);
+}
+
+/* Effet de survol sur les cartes de chambres */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+/* Amélioration du bouton réserver */
+.btn-gold {
+    background: linear-gradient(45deg, var(--gold), var(--gold-light));
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-gold:hover {
+    background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hotel-image {
+        height: 200px;
+    }
+    
+    .hotel-banner {
+        height: 300px;
+    }
+    
+    .hotel-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .chambre-image {
+        height: 150px;
+    }
+}
+
+/* Effet de chargement pour les images */
+.image-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Overlay pour les images avec texte */
+.image-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover::after {
+    opacity: 1;
+}
+
+.image-overlay .overlay-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.image-overlay:hover .overlay-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Images de fond globales */
+.hero, .hero-hotel {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before, .hero-hotel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(212,175,55,0.1), rgba(184,134,11,0.1));
+    z-index: 1;
+}
+
+.hero .container, .hero-hotel .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Effets de transparence et blur */
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.card.border-0 {
+    border-radius: 20px !important;
+}
+
+.rounded-4 {
+    border-radius: 20px !important;
+}
+
+/* Animations pour les images de fond */
+@keyframes backgroundSlide {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero {
+    animation: backgroundSlide 20s ease-in-out infinite;
+    background-size: 120% 120%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero, .hero-hotel {
+        min-height: 60vh !important;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+/* Overlay décoratifs */
+.section-overlay {
+    position: relative;
+}
+
+.section-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(255,255,255,1), transparent);
+    z-index: 1;
 }

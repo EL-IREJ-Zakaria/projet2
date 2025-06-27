@@ -130,7 +130,7 @@ include '../includes/header.php';
                                             <td><?php echo htmlspecialchars($chambre['numero']); ?></td>
                                             <td><?php echo htmlspecialchars($chambre['type']); ?></td>
                                             <td><?php echo $chambre['capacite']; ?> personne<?php echo $chambre['capacite'] > 1 ? 's' : ''; ?></td>
-                                            <td><?php echo number_format($chambre['prix_nuit'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($chambre['prix_nuit'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <?php if ($chambre['disponible']) : ?>
                                                     <span class="badge bg-success">Disponible</span>

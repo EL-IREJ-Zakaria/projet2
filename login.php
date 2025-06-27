@@ -109,7 +109,7 @@ include 'includes/header.php';
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
                                 <label class="form-check-label" for="remember">Se souvenir de moi</label>
                             </div>
-                            <a href="#" class="text-gold text-decoration-none">Mot de passe oublié?</a>
+                            <a href="mot_de_passe_oublie.php" class="text-gold text-decoration-none">Mot de passe oublié?</a>
                         </div>
                         
                         <div class="d-grid mb-4">

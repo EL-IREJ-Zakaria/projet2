@@ -121,7 +121,7 @@ include '../includes/header.php';
                                         <p class="card-text">
                                             <small><i class="fas fa-bed me-2 text-gold"></i><?php echo htmlspecialchars($reservation['chambre_type']); ?> (N°<?php echo htmlspecialchars($reservation['chambre_numero']); ?>)</small><br>
                                             <small><i class="fas fa-calendar me-2 text-gold"></i><?php echo date('d/m/Y', strtotime($reservation['date_arrivee'])); ?> - <?php echo date('d/m/Y', strtotime($reservation['date_depart'])); ?></small><br>
-                                            <small class="text-gold fw-bold"><i class="fas fa-euro-sign me-2"></i><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> €</small>
+                                            <small class="text-gold fw-bold"><i class="fas fa-euro-sign me-2"></i><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> MAD</small>
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="badge bg-success">Confirmée</span>
@@ -184,7 +184,7 @@ include '../includes/header.php';
                                             <span class="badge bg-warning text-dark">En attente</span>
                                         <?php endif; ?>
                                     </td>
-                                    <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> €</td>
+                                    <td><?php echo number_format($reservation['prix_total'], 2, ',', ' '); ?> MAD</td>
                                 </tr>
                                 <?php 
                                     endif;

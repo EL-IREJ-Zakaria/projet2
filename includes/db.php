@@ -35,24 +35,37 @@ function executeQuery($sql, $types = null, $params = []) {
     
     $stmt->execute();
     
-    $result = $stmt->get_result();
-    
-    $stmt->close();
-    $conn->close();
-    
-    return $result;
+    // Vérifier si c'est une requête SELECT
+    if (stripos(trim($sql), 'SELECT') === 0) {
+        $result = $stmt->get_result();
+        $stmt->close();
+        $conn->close();
+        return $result;
+    } else {
+        // Pour INSERT, UPDATE, DELETE
+        $affected_rows = $stmt->affected_rows;
+        $stmt->close();
+        $conn->close();
+        return $affected_rows;
+    }
 }
 
 // Fonction pour obtenir une seule ligne
 function fetchOne($sql, $types = null, $params = []) {
     $result = executeQuery($sql, $types, $params);
-    return $result->fetch_assoc();
+    if ($result instanceof mysqli_result) {
+        return $result->fetch_assoc();
+    }
+    return null;
 }
 
 // Fonction pour obtenir plusieurs lignes
 function fetchAll($sql, $types = null, $params = []) {
     $result = executeQuery($sql, $types, $params);
-    return $result->fetch_all(MYSQLI_ASSOC);
+    if ($result instanceof mysqli_result) {
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    return [];
 }
 
 // Fonction pour insérer des données et récupérer l'ID

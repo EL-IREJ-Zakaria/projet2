@@ -186,7 +186,7 @@ include '../includes/header.php';
                                 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="prix_nuit" class="form-label">Prix par nuit (€) <span class="text-danger">*</span></label>
+                                        <label for="prix_nuit" class="form-label">Prix par nuit (MAD) <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="prix_nuit" name="prix_nuit" step="0.01" min="0" value="<?php echo isset($_POST['prix_nuit']) ? htmlspecialchars($_POST['prix_nuit']) : ''; ?>" required>
                                         <div class="invalid-feedback">Veuillez entrer un prix valide.</div>
                                     </div>

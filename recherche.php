@@ -23,31 +23,20 @@ if (!empty($date_arrivee) && !empty($date_depart)) {
 // Recherche des hôtels disponibles
 $hotels = [];
 if (!empty($ville) && !empty($date_arrivee) && !empty($date_depart) && !$date_error) {
-    // Requête pour trouver les hôtels dans la ville spécifiée avec des chambres disponibles
+    // Requête simplifiée pour afficher TOUS les hôtels de la ville, peu importe la disponibilité
     $sql = "SELECT h.*, 
-           (SELECT MIN(c.prix_nuit) FROM chambres c WHERE c.hotel_id = h.id AND c.capacite >= ? AND c.disponible = 1) as prix_min
+           (SELECT MIN(c.prix_nuit) FROM chambres c WHERE c.hotel_id = h.id AND c.capacite >= ?) as prix_min
            FROM hotels h 
            WHERE h.ville = ? 
            AND EXISTS (
                SELECT 1 FROM chambres c 
                WHERE c.hotel_id = h.id 
-               AND c.capacite >= ? 
-               AND c.disponible = 1
-               AND NOT EXISTS (
-                   SELECT 1 FROM reservations r 
-                   WHERE r.chambre_id = c.id 
-                   AND r.statut != 'annulée'
-                   AND (
-                       (r.date_arrivee <= ? AND r.date_depart > ?) OR
-                       (r.date_arrivee < ? AND r.date_depart >= ?) OR
-                       (r.date_arrivee >= ? AND r.date_depart <= ?)
-                   )
-               )
+               AND c.capacite >= ?
            )
            ORDER BY h.etoiles DESC, prix_min ASC";
     
-    $params = [$nb_personnes, $ville, $nb_personnes, $date_depart, $date_arrivee, $date_arrivee, $date_depart, $date_arrivee, $date_depart];
-    $result = executeQuery($sql, "issssssss", $params);
+    $params = [$nb_personnes, $ville, $nb_personnes];
+    $result = executeQuery($sql, "iss", $params);
     
     while ($row = $result->fetch_assoc()) {
         $hotels[] = $row;
@@ -69,11 +58,11 @@ include 'includes/header.php';
                             <label for="ville" class="form-label">Destination</label>
                             <select class="form-select" id="ville" name="ville" required>
                                 <option value="" <?php echo empty($ville) ? 'selected' : ''; ?> disabled>Choisir une ville</option>
-                                <option value="Paris" <?php echo $ville === 'Paris' ? 'selected' : ''; ?>>Paris</option>
-                                <option value="Nice" <?php echo $ville === 'Nice' ? 'selected' : ''; ?>>Nice</option>
-                                <option value="Cannes" <?php echo $ville === 'Cannes' ? 'selected' : ''; ?>>Cannes</option>
-                                <option value="Lyon" <?php echo $ville === 'Lyon' ? 'selected' : ''; ?>>Lyon</option>
-                                <option value="Bordeaux" <?php echo $ville === 'Bordeaux' ? 'selected' : ''; ?>>Bordeaux</option>
+                                <option value="Marrakech" <?php echo $ville === 'Marrakech' ? 'selected' : ''; ?>>Marrakech</option>
+                                <option value="Casablanca" <?php echo $ville === 'Casablanca' ? 'selected' : ''; ?>>Casablanca</option>
+                                <option value="Fès" <?php echo $ville === 'Fès' ? 'selected' : ''; ?>>Fès</option>
+                                <option value="Agadir" <?php echo $ville === 'Agadir' ? 'selected' : ''; ?>>Agadir</option>
+                                <option value="Rabat" <?php echo $ville === 'Rabat' ? 'selected' : ''; ?>>Rabat</option>
                             </select>
                             <div class="invalid-feedback">Veuillez choisir une destination.</div>
                         </div>
@@ -120,8 +109,8 @@ include 'includes/header.php';
             <h2 class="mb-4">Résultats pour <?php echo htmlspecialchars($ville); ?></h2>
             
             <?php if (empty($hotels)) : ?>
-                <div class="alert alert-info">
-                    Aucun hôtel disponible pour ces critères. Veuillez modifier votre recherche.
+                <div class="alert alert-warning">
+                    Aucun hôtel trouvé dans cette ville. Essayez une autre destination.
                 </div>
             <?php else : ?>
                 <div class="row">
@@ -146,7 +135,7 @@ include 'includes/header.php';
                                     </p>
                                     <p class="card-text mb-3"><?php echo substr(htmlspecialchars($hotel['description']), 0, 100); ?>...</p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <p class="text-gold fw-bold mb-0">À partir de <?php echo number_format($hotel['prix_min'], 2, ',', ' '); ?> €</p>
+                                        <p class="text-gold fw-bold mb-0">À partir de <?php echo number_format($hotel['prix_min'], 2, ',', ' '); ?> MAD</p>
                                         <a href="hotel.php?id=<?php echo $hotel['id']; ?>&date_arrivee=<?php echo urlencode($date_arrivee); ?>&date_depart=<?php echo urlencode($date_depart); ?>&nb_personnes=<?php echo $nb_personnes; ?>" class="btn btn-outline-gold">Voir les chambres</a>
                                     </div>
                                 </div>

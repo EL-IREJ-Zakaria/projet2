@@ -231,7 +231,7 @@ include '../includes/header.php';
                             <div class="card border-0 bg-light h-100">
                                 <div class="card-body text-center">
                                     <h6 class="text-muted mb-2">Chiffre d'affaires</h6>
-                                    <h2 class="mb-0"><?php echo number_format($stats['chiffre_affaires'] ?? 0, 2, ',', ' '); ?> €</h2>
+                                    <h2 class="mb-0"><?php echo number_format($stats['chiffre_affaires'] ?? 0, 2, ',', ' '); ?> MAD</h2>
                                 </div>
                             </div>
                         </div>
@@ -285,7 +285,7 @@ include '../includes/header.php';
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-end"><?php echo $statut['nb_reservations']; ?></td>
-                                                <td class="text-end"><?php echo number_format($statut['montant_total'], 2, ',', ' '); ?> €</td>
+                                                <td class="text-end"><?php echo number_format($statut['montant_total'], 2, ',', ' '); ?> MAD</td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -323,7 +323,7 @@ include '../includes/header.php';
                                                         </a>
                                                     </td>
                                                     <td class="text-end"><?php echo $client['nb_reservations']; ?></td>
-                                                    <td class="text-end"><?php echo number_format($client['montant_total'], 2, ',', ' '); ?> €</td>
+                                                    <td class="text-end"><?php echo number_format($client['montant_total'], 2, ',', ' '); ?> MAD</td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -361,7 +361,7 @@ include '../includes/header.php';
                                                 <tr>
                                                     <td><?php echo htmlspecialchars($hotel['nom'] . ' (' . $hotel['ville'] . ')'); ?></td>
                                                     <td class="text-end"><?php echo $hotel['nb_reservations']; ?></td>
-                                                    <td class="text-end"><?php echo number_format($hotel['chiffre_affaires'], 2, ',', ' '); ?> €</td>
+                                                    <td class="text-end"><?php echo number_format($hotel['chiffre_affaires'], 2, ',', ' '); ?> MAD</td>
                                                     <td class="text-end">
                                                         <?php 
                                                         $pourcentage = ($stats['chiffre_affaires'] > 0) ? ($hotel['chiffre_affaires'] / $stats['chiffre_affaires']) * 100 : 0;
@@ -402,7 +402,7 @@ include '../includes/header.php';
                                         <tr>
                                             <td><?php echo date('F Y', strtotime($mois['mois'] . '-01')); ?></td>
                                             <td class="text-end"><?php echo $mois['nb_reservations']; ?></td>
-                                            <td class="text-end"><?php echo number_format($mois['chiffre_affaires'], 2, ',', ' '); ?> €</td>
+                                            <td class="text-end"><?php echo number_format($mois['chiffre_affaires'], 2, ',', ' '); ?> MAD</td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

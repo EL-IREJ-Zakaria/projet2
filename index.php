@@ -1,35 +1,38 @@
 <?php include 'includes/header.php'; ?>
 
-<!-- Hero Section -->
-<section class="hero" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 hero-content" role="banner" aria-label="Hero section">
-                <h1 class="mb-4">Découvrez le luxe à son apogée</h1>
-                <p class="lead mb-5">Réservez votre séjour dans les plus beaux hôtels du monde et vivez une expérience inoubliable.</p>
-                <a href="#search" class="btn btn-gold btn-lg px-4 py-2">Réserver maintenant</a>
+<!-- Hero Section avec image de fond améliorée -->
+<section class="hero position-relative" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&h=800&fit=crop') center/cover; min-height: 100vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="row w-100">
+            <div class="col-lg-8 hero-content text-white">
+                <h1 class="display-3 fw-bold mb-4">Découvrez le luxe à son apogée</h1>
+                <p class="lead mb-5 fs-4">Réservez votre séjour dans les plus beaux hôtels du monde et vivez une expérience inoubliable.</p>
+                <a href="#search" class="btn btn-gold btn-lg px-5 py-3 fs-5">Réserver maintenant</a>
             </div>
         </div>
     </div>
+    <!-- Overlay décoratif -->
+    <div class="position-absolute bottom-0 start-0 end-0" style="height: 100px; background: linear-gradient(to top, rgba(255,255,255,1), transparent);"></div>
 </section>
 
-<!-- Formulaire de recherche -->
-<section id="search" class="py-5">
+<!-- Section de recherche avec image de fond -->
+<section id="search" class="py-5 position-relative" style="background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&h=600&fit=crop') center/cover;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="search-form shadow">
-                    <h3 class="text-center mb-4">Trouvez l'hôtel parfait pour votre séjour</h3>
+                <div class="search-form shadow-lg border-0 rounded-4" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+                    <div class="p-5">
+                        <h3 class="text-center mb-4 text-primary fw-bold">Trouvez l'hôtel parfait pour votre séjour</h3>
                     <form action="recherche.php" method="GET" class="row g-3 needs-validation" novalidate>
                         <div class="col-md-4">
                             <label for="destination" class="form-label">Destination</label>
                             <select class="form-select" id="destination" name="ville" required>
                                 <option value="" selected disabled>Choisir une ville</option>
-                                <option value="Paris">Paris</option>
-                                <option value="Nice">Nice</option>
-                                <option value="Cannes">Cannes</option>
-                                <option value="Lyon">Lyon</option>
-                                <option value="Bordeaux">Bordeaux</option>
+                                <option value="Marrakech">Marrakech</option>
+                                <option value="Casablanca">Casablanca</option>
+                                <option value="Fès">Fès</option>
+                                <option value="Agadir">Agadir</option>
+                                <option value="Rabat">Rabat</option>
                             </select>
                             <div class="invalid-feedback">
                                 Veuillez choisir une destination.
@@ -79,29 +82,29 @@
             $hotels = [
                 [
                     'id' => 1,
-                    'nom' => 'Grand Hôtel Paris',
-                    'ville' => 'Paris',
-                    'pays' => 'France',
+                    'nom' => 'La Mamounia',
+                    'ville' => 'Marrakech',
+                    'pays' => 'Maroc',
                     'etoiles' => 5,
-                    'prix' => 350,
+                    'prix' => 450,
                     'image' => 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80'
                 ],
                 [
                     'id' => 2,
-                    'nom' => 'Riviera Palace',
-                    'ville' => 'Nice',
-                    'pays' => 'France',
+                    'nom' => 'Four Seasons Resort',
+                    'ville' => 'Casablanca',
+                    'pays' => 'Maroc',
                     'etoiles' => 5,
-                    'prix' => 420,
+                    'prix' => 520,
                     'image' => 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80'
                 ],
                 [
                     'id' => 3,
-                    'nom' => 'Royal Cannes',
-                    'ville' => 'Cannes',
-                    'pays' => 'France',
+                    'nom' => 'Royal Mansour',
+                    'ville' => 'Marrakech',
+                    'pays' => 'Maroc',
                     'etoiles' => 5,
-                    'prix' => 380,
+                    'prix' => 680,
                     'image' => 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80'
                 ],
             ];
@@ -122,7 +125,7 @@
                                 <i class="fas fa-star"></i>
                             <?php endfor; ?>
                         </p>
-                        <p class="card-text fw-bold">À partir de <?php echo $hotel['prix']; ?> € / nuit</p>
+                        <p class="card-text fw-bold">À partir de <?php echo $hotel['prix']; ?> MAD / nuit</p>
                     </div>
                     <div class="card-footer bg-white border-0 text-center">
                         <a href="hotel.php?id=<?php echo $hotel['id']; ?>" class="btn btn-outline-gold">Voir les détails</a>

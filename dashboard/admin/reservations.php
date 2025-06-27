@@ -186,7 +186,7 @@ include '../includes/header.php';
                                                     ?>
                                                 </div>
                                             </td>
-                                            <td><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> €</td>
+                                            <td><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> MAD</td>
                                             <td>
                                                 <?php if ($reservation['statut'] === 'en_attente') : ?>
                                                     <span class="badge bg-warning">En attente</span>

@@ -100,7 +100,7 @@ include '../includes/header.php';
                                 </div>
                                 <div class="col-md-6">
                                     <p class="mb-1"><strong>Montant total :</strong></p>
-                                    <p class="fw-bold"><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> €</p>
+                                    <p class="fw-bold"><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> MAD</p>
                                 </div>
                             </div>
                             
@@ -176,7 +176,7 @@ include '../includes/header.php';
                             <p><?php echo $reservation['chambre_capacite']; ?> personne<?php echo $reservation['chambre_capacite'] > 1 ? 's' : ''; ?></p>
                             
                             <p class="mb-1"><strong>Prix par nuit :</strong></p>
-                            <p><?php echo number_format($reservation['chambre_prix_nuit'], 2, ',', ' '); ?> €</p>
+                            <p><?php echo number_format($reservation['chambre_prix_nuit'], 2, ',', ' '); ?> MAD</p>
                         </div>
                         <div class="col-md-6">
                             <?php if (!empty($reservation['chambre_image'])) : ?>
@@ -203,7 +203,7 @@ include '../includes/header.php';
                             <tbody>
                                 <tr>
                                     <th>Prix par nuit</th>
-                                    <td class="text-end"><?php echo number_format($reservation['chambre_prix_nuit'], 2, ',', ' '); ?> €</td>
+                                    <td class="text-end"><?php echo number_format($reservation['chambre_prix_nuit'], 2, ',', ' '); ?> MAD</td>
                                 </tr>
                                 <tr>
                                     <th>Nombre de nuits</th>
@@ -211,15 +211,15 @@ include '../includes/header.php';
                                 </tr>
                                 <tr>
                                     <th>Sous-total</th>
-                                    <td class="text-end"><?php echo number_format($reservation['chambre_prix_nuit'] * $nb_nuits, 2, ',', ' '); ?> €</td>
+                                    <td class="text-end"><?php echo number_format($reservation['chambre_prix_nuit'] * $nb_nuits, 2, ',', ' '); ?> MAD</td>
                                 </tr>
                                 <tr>
-                                    <th>Taxes (<?php echo number_format($reservation['taxe_sejour'], 2, ',', ' '); ?> €/nuit)</th>
-                                    <td class="text-end"><?php echo number_format($reservation['taxe_sejour'] * $nb_nuits, 2, ',', ' '); ?> €</td>
+                                    <th>Taxes (<?php echo number_format($reservation['taxe_sejour'], 2, ',', ' '); ?> MAD/nuit)</th>
+                                    <td class="text-end"><?php echo number_format($reservation['taxe_sejour'] * $nb_nuits, 2, ',', ' '); ?> MAD</td>
                                 </tr>
                                 <tr class="table-active">
                                     <th>Montant total</th>
-                                    <td class="text-end fw-bold"><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> €</td>
+                                    <td class="text-end fw-bold"><?php echo number_format($reservation['montant_total'], 2, ',', ' '); ?> MAD</td>
                                 </tr>
                             </tbody>
                         </table>
